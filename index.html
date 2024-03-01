@@ -80,11 +80,17 @@
       </h3>
       <div class="mt-10 mb-20 md:flex justify-center">
         <label
-          class="input input-bordered flex items-center gap-2 input-lg bg-gray-200"
+          class="input input-bordered flex items-center gap-2 input-lg bg-gray-100"
         >
-          <input type="text" class="grow" placeholder="Search Your Phone" />
+          <input
+            type="text"
+            id="search-field"
+            class="grow"
+            placeholder="Search Your Phone"
+          />
         </label>
         <button
+          onclick="handleSearch()"
           class="btn btn-lg bg-blue-500 hover:bg-blue-400 hover:text-black text-white px-8"
         >
           Search
