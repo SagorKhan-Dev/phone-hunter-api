@@ -15,8 +15,17 @@ const displayPhone = (phones) => {
   const phoneContainer = document.getElementById("phone-container");
   //   clear phone container before adding new phone
   phoneContainer.textContent = "";
+  // display show all button if the condition is true
+  const showAllContainer = document.getElementById("show-all-container");
+  if (phones.length > 12) {
+    showAllContainer.classList.remove("hidden");
+  } else {
+    showAllContainer.classList.add("hidden");
+  }
+  phones = phones.slice(0, 12);
+
   phones.forEach((phone) => {
-    console.log(phone);
+    // console.log(phone);
     const phoneCard = document.createElement("div");
     phoneCard.classList = `card bg-base-100 shadow-xl`;
     phoneCard.innerHTML = `
@@ -47,7 +56,6 @@ const displayPhone = (phones) => {
 };
 
 // search button
-
 const handleSearch = () => {
   const searchField = document.getElementById("search-field");
   const searchText = searchField.value;
