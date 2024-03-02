@@ -28,7 +28,7 @@ const displayPhone = (phones, isShowAll) => {
   }
 
   phones.forEach((phone) => {
-    // console.log(phone);
+    console.log(phone);
     const phoneCard = document.createElement("div");
     phoneCard.classList = `card bg-base-100 shadow-xl`;
     phoneCard.innerHTML = `
@@ -46,17 +46,27 @@ const displayPhone = (phones, isShowAll) => {
         majority have suffered
         </p>
         <div class="card-actions">
-        <button
+          <button
+            onclick="handleShowDetails('${phone.slug}')"
             class="btn bg-blue-500 hover:bg-blue-400 hover:text-black text-white px-6"
-        >
+          >
             Show Details
-        </button>
+          </button>
         </div>
     </div>
     `;
     phoneContainer.appendChild(phoneCard);
   });
   toggleLoadingSpinner(false);
+};
+
+// show details button
+const handleShowDetails = async (id) => {
+  const res = await fetch(
+    `https://openapi.programming-hero.com/api/phone/${id}`
+  );
+  const data = await res.json();
+  console.log(data);
 };
 
 // search button
