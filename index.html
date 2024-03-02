@@ -56,7 +56,7 @@
           class="mt-6 text-lg text-slate-600 text-center max-w-3xl mx-auto my-8"
         >
           There are many variations of passages of Lorem Ipsum available, but
-          the majority have suffered alteration in some form, by injected humou.
+          the majority have suffered alteration in some form, by injected .
         </p>
         <div class="text-center">
           <button
@@ -119,6 +119,26 @@
           Show All
         </button>
       </div>
+
+      <!-- show details modal -->
+      <section class="container mx-auto">
+        <!-- You can open the modal using ID.showModal() method -->
+        <dialog id="show_details_modal" class="modal">
+          <div class="modal-box">
+            <div id="show-detail-container"></div>
+            <div class="modal-action">
+              <form method="dialog">
+                <!-- if there is a button, it will close the modal -->
+                <button
+                  class="btn bg-blue-500 hover:bg-blue-400 hover:text-black text-white px-6"
+                >
+                  Close
+                </button>
+              </form>
+            </div>
+          </div>
+        </dialog>
+      </section>
     </main>
     <!-- Main Part End -->
 

@@ -1,5 +1,5 @@
 // load phones with API
-const loadPhone = async (searchText, isShowAll) => {
+const loadPhone = async (searchText = 13, isShowAll) => {
   const res = await fetch(
     `https://openapi.programming-hero.com/api/phones?search=${searchText}`
   );
@@ -28,7 +28,7 @@ const displayPhone = (phones, isShowAll) => {
   }
 
   phones.forEach((phone) => {
-    console.log(phone);
+    // console.log(phone);
     const phoneCard = document.createElement("div");
     phoneCard.classList = `card bg-base-100 shadow-xl`;
     phoneCard.innerHTML = `
@@ -66,7 +66,46 @@ const handleShowDetails = async (id) => {
     `https://openapi.programming-hero.com/api/phone/${id}`
   );
   const data = await res.json();
-  console.log(data);
+  const phone = data.data;
+  showPhoneDetails(phone);
+};
+
+// show modal
+const showPhoneDetails = (phone) => {
+  console.log(phone);
+  const showDetailContainer = document.getElementById("show-detail-container");
+  showDetailContainer.innerHTML = `
+  <div id="show-detail-container">
+    <img class="mx-auto w-1/2" src="${phone.image}" alt="" />
+    <h3 class="text-3xl font-bold">${phone.name}</h3>
+    <p class="text-xl font-medium">Storage: <span class="text-base font-normal">${
+      phone?.mainFeatures?.storage
+    }</span></p>
+    <p class="text-xl font-medium">Display Size: <span class="text-base font-normal">${
+      phone?.mainFeatures?.displaySize
+    }</span></p>
+    <p class="text-xl font-medium">Chipset: <span class="text-base font-normal">${
+      phone?.mainFeatures?.chipSet
+    }</span></p>
+    <p class="text-xl font-medium">Memory: <span class="text-base font-normal">${
+      phone?.mainFeatures?.memory
+    }</span></p>
+    <p class="text-xl font-medium">Slug: <span class="text-base font-normal">${
+      phone?.slug
+    }</span></p>
+    <p class="text-xl font-medium">Release Date: <span class="text-base font-normal">${
+      phone?.releaseDate
+    }</span></p>
+    <p class="text-xl font-medium">Brand <span class="text-base font-normal">${
+      phone?.brand
+    }</span></p>
+    <p class="text-xl font-medium">Gps <span class="text-base font-normal">${
+      phone?.others?.GPS || "No GPS"
+    }</span></p>
+  </div>
+  `;
+
+  show_details_modal.showModal();
 };
 
 // search button
@@ -92,4 +131,4 @@ const handleShowAll = () => {
   handleSearch(true);
 };
 
-// loadPhone();
+loadPhone();
